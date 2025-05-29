@@ -1,0 +1,44 @@
+CREATE TABLE Theatre (
+    theatre_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    location VARCHAR(100)
+);
+
+CREATE TABLE Movie (
+    movie_id INT PRIMARY KEY,
+    title VARCHAR(100),
+    language VARCHAR(50),
+    format VARCHAR(10)
+);
+
+CREATE TABLE Showtime (
+    show_id INT PRIMARY KEY,
+    movie_id INT,
+    theatre_id INT,
+    show_date DATE,
+    show_time TIME,
+    screen_type VARCHAR(50),
+    FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
+    FOREIGN KEY (theatre_id) REFERENCES Theatre(theatre_id)
+);
+
+
+-- Theatre
+INSERT INTO Theatre VALUES (1, 'PVR: Nexus (Forum)', 'Bangalore');
+
+-- Movie
+INSERT INTO Movie VALUES
+(1, 'Dasara', 'Telugu', '2D'),
+(2, 'Kisi Ka Bhai Kisi Ki Jaan', 'Hindi', '2D'),
+(3, 'Tu Jhoothi Main Makkaar', 'Hindi', '2D'),
+(4, 'Avatar: The Way of Water', 'English', '3D');
+
+-- Showtime
+INSERT INTO Showtime VALUES
+(101, 1, 1, '2023-04-25', '12:10:00', '4K Dolby 7.1'),
+(102, 2, 1, '2023-04-25', '01:00:00', '4K ATMOS 4K'),
+(103, 2, 1, '2023-04-25', '04:10:00', '4K ATMOS 4K'),
+(104, 2, 1, '2023-04-25', '06:20:00', '4K Dolby 7.1'),
+(105, 3, 1, '2023-04-25', '01:15:00', '4K'),
+(106, 4, 1, '2023-04-25', '01:20:00', 'Playhouse 4K');
+
